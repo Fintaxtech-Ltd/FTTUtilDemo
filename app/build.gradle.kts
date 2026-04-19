@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":ftt-utils"))
+    implementation("uk.co.fintaxtech:ftt-utils:0.0.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
