@@ -1,3 +1,5 @@
+import java.util.Properties
+import java.io.FileInputStream
 plugins {
     id("com.android.library")
     id("maven-publish")
@@ -36,7 +38,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
-// Optimized Publishing Block
 afterEvaluate {
     publishing {
         publications {
@@ -48,5 +49,22 @@ afterEvaluate {
                 version = "0.0.1"
             }
         }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/Fintaxtech-Ltd/FTTUtilDemo")
+                credentials {
+                    // This reads from your local.properties or System Env
+                    val localProperties = Properties()
+                    val localPropertiesFile = rootProject.file("local.properties")
+                    if (localPropertiesFile.exists()) {
+                        localProperties.load(localPropertiesFile.inputStream())
+                    }
+
+                    username = localProperties.getProperty("gpr.usr") ?: System.getenv("GPR_USER")
+                    password = localProperties.getProperty("gpr.key") ?: System.getenv("PERSONAL_ACCESS_TOKEN")
+                }
+            }
+        }
     }
-}
+} // :ftt-utils:publishAllPublicationsToGitHubPackagesRepository
