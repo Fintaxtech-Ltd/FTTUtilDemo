@@ -1,12 +1,9 @@
 package uk.co.fintaxtech.ftt.utils.date
 
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Test
-import java.util.Calendar
-import java.util.TimeZone
 
-class TimeUtilsTest {
+class FTTTimeUtilsTest {
 
     @Test
     fun `formatMillisToDateString returns correct format`() {
